@@ -1,85 +1,58 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
-import Navigation from '../components/Navigation';
-import { supabase } from '../lib/supabase';
+import { submitContact } from '../lib/api';
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  service: string;
-  preferred_date: string;
-  preferred_time: string;
-  address: string;
-  message: string;
-}
-
-function Contact() {
-  const [formData, setFormData] = useState<FormData>({
+export default function Contact() {
+  const [form, setForm] = useState({
     name: '',
     email: '',
-    phone: '',
-    service: 'Full Service',
-    preferred_date: '',
-    preferred_time: '',
-    address: '',
+    subject: '',
     message: '',
   });
-
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setStatus('idle');
-    setErrorMessage('');
-
+    setErrorMsg('');
     try {
-      const { error } = await supabase
-        .from('bookings')
-        .insert([formData]);
-
-      if (error) {
-        setStatus('error');
-        setErrorMessage(error.message || 'Failed to submit booking');
-      } else {
+      const res = await submitContact({
+        name: form.name,
+        email: form.email,
+        subject: form.subject || undefined,
+        message: form.message,
+      });
+      if (res.success) {
         setStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: 'Full Service',
-          preferred_date: '',
-          preferred_time: '',
-          address: '',
-          message: '',
-        });
-        setTimeout(() => setStatus('idle'), 5000);
+        setForm({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+        setErrorMsg(res.error ?? 'Failed to send message');
       }
-    } catch (err) {
+    } catch {
       setStatus('error');
-      setErrorMessage('An unexpected error occurred');
+      setErrorMsg('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-neutral-900">
-      <Navigation />
-
+    <>
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Book Your Appointment</h1>
-            <p className="text-xl text-gray-400">Schedule professional grooming at your home</p>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Contact Us</h1>
+            <p className="text-xl text-gray-400">Get in touch – we’ll respond as soon as we can.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -100,129 +73,72 @@ function Contact() {
             <div className="bg-neutral-800 rounded-2xl p-8 border border-amber-500/20">
               <MapPin className="h-8 w-8 text-amber-500 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Service Area</h3>
-              <p className="text-gray-400">Metro Area - Same day appointments available</p>
+              <p className="text-gray-400">Metro Area – same-day appointments available</p>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-8">Quick Contact</h2>
+              <h2 className="text-3xl font-bold text-white mb-8">Send a message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-white font-medium mb-2">Full Name</label>
+                  <label className="block text-white font-medium mb-2">Full Name *</label>
                   <input
                     type="text"
                     name="name"
-                    value={formData.name}
+                    value={form.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition"
+                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
                     placeholder="John Doe"
                   />
                 </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-white font-medium mb-2">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-white font-medium mb-2">Phone</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-                </div>
-
                 <div>
-                  <label className="block text-white font-medium mb-2">Service</label>
-                  <select
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition"
-                  >
-                    <option>Basic Cut - $35</option>
-                    <option>Full Service - $60</option>
-                    <option>Premium Package - $85</option>
-                  </select>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-white font-medium mb-2">Preferred Date</label>
-                    <input
-                      type="date"
-                      name="preferred_date"
-                      value={formData.preferred_date}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-white font-medium mb-2">Preferred Time</label>
-                    <input
-                      type="time"
-                      name="preferred_time"
-                      value={formData.preferred_time}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-white font-medium mb-2">Service Address</label>
+                  <label className="block text-white font-medium mb-2">Email *</label>
                   <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
+                    type="email"
+                    name="email"
+                    value={form.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition"
-                    placeholder="123 Main St, City, State"
+                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                    placeholder="john@example.com"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-white font-medium mb-2">Additional Notes (Optional)</label>
+                  <label className="block text-white font-medium mb-2">Subject</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                    placeholder="How can we help?"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white font-medium mb-2">Message *</label>
                   <textarea
                     name="message"
-                    value={formData.message}
+                    value={form.message}
                     onChange={handleChange}
-                    rows={4}
-                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition resize-none"
-                    placeholder="Any special requests or preferences..."
+                    required
+                    rows={5}
+                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 resize-none"
+                    placeholder="Your message..."
                   />
                 </div>
 
                 {status === 'success' && (
-                  <div className="bg-green-500/10 border border-green-500/50 rounded-lg p-4 flex items-center space-x-3">
+                  <div className="flex items-center gap-3 rounded-lg border border-green-500/50 bg-green-500/10 p-4">
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <p className="text-green-400">Booking submitted successfully! We'll contact you soon to confirm.</p>
+                    <p className="text-green-400">Message sent! We’ll get back to you soon.</p>
                   </div>
                 )}
-
                 {status === 'error' && (
-                  <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4 flex items-center space-x-3">
+                  <div className="flex items-center gap-3 rounded-lg border border-red-500/50 bg-red-500/10 p-4">
                     <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
-                    <p className="text-red-400">{errorMessage}</p>
+                    <p className="text-red-400">{errorMsg}</p>
                   </div>
                 )}
 
@@ -231,65 +147,48 @@ function Contact() {
                   disabled={loading}
                   className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 text-black font-semibold py-4 rounded-lg transition text-lg"
                 >
-                  {loading ? 'Booking...' : 'Book Appointment'}
+                  {loading ? 'Sending…' : 'Send Message'}
                 </button>
               </form>
             </div>
 
             <div className="space-y-8">
               <div className="bg-gradient-to-br from-amber-500/20 to-transparent rounded-2xl p-8 border border-amber-500/30">
-                <h3 className="text-2xl font-bold text-white mb-4">Why Book With Us?</h3>
-                <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-white mb-4">Why contact us?</h3>
+                <ul className="space-y-4">
                   {[
-                    'Professional barbers at your home',
-                    'Flexible scheduling for your convenience',
-                    'Premium products and equipment',
-                    'No waiting - direct service',
-                    'Same-day appointment availability',
-                    'Satisfaction guarantee',
-                  ].map((benefit, idx) => (
-                    <div key={idx} className="flex items-start space-x-3">
+                    'Questions about services or pricing',
+                    'Custom or group bookings',
+                    'Feedback or suggestions',
+                    'Partnership inquiries',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                      <p className="text-gray-300">{benefit}</p>
-                    </div>
+                      <span className="text-gray-300">{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-
-              <div className="bg-neutral-800 rounded-2xl p-8 border border-amber-500/20">
-                <h3 className="text-2xl font-bold text-white mb-4">Service Hours</h3>
-                <div className="space-y-2 text-gray-400">
-                  <p className="flex justify-between"><span>Monday - Friday:</span> <span className="text-white">8:00 AM - 8:00 PM</span></p>
-                  <p className="flex justify-between"><span>Saturday:</span> <span className="text-white">8:00 AM - 6:00 PM</span></p>
-                  <p className="flex justify-between"><span>Sunday:</span> <span className="text-white">10:00 AM - 4:00 PM</span></p>
-                </div>
-              </div>
-
-              <img
-                src="https://images.pexels.com/photos/3375910/pexels-photo-3375910.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Professional barber service"
-                className="w-full h-64 object-cover rounded-2xl shadow-2xl"
-              />
+              <p className="text-gray-500 text-sm">
+                To book an appointment, use the <Link to="/book" className="text-amber-500 hover:underline">Book</Link> page.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <footer className="bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <span className="text-2xl font-bold text-white">EliteGrooming</span>
-            </div>
-            <div className="text-gray-400 text-center md:text-right">
-              <p>© 2024 EliteGrooming. All rights reserved.</p>
-              <p className="text-sm mt-1">Professional Home Barber Services</p>
-            </div>
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="text-xl font-bold text-white">EliteGrooming</span>
+          <div className="flex gap-6 text-sm text-gray-400">
+            <Link to="/privacy" className="hover:text-amber-500">Privacy</Link>
+            <Link to="/terms" className="hover:text-amber-500">Terms</Link>
           </div>
         </div>
+        <div className="max-w-7xl mx-auto mt-4 text-center text-gray-500 text-sm">
+          © {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.
+        </div>
       </footer>
-    </div>
+    </>
   );
 }
-
-export default Contact;
