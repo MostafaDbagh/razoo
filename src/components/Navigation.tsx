@@ -6,7 +6,6 @@ function Navigation() {
 
   const navLinks = [
     { to: '/', label: 'Home' },
-    { to: '/services', label: 'Services' },
     { to: '/style', label: 'Style' },
     { to: '/about', label: 'About' },
     { to: '/book', label: 'Book' },

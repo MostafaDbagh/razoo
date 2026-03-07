@@ -4,7 +4,6 @@ import MainLayout from './components/MainLayout';
 import PageLoader from './components/PageLoader';
 
 const Home = lazy(() => import('./pages/Home'));
-const Services = lazy(() => import('./pages/Services'));
 const Style = lazy(() => import('./pages/Style'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Book = lazy(() => import('./pages/Book'));
@@ -23,7 +22,6 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
             <Route path="/style" element={<Style />} />
             <Route path="/about" element={<About />} />
             <Route path="/book" element={<Book />} />

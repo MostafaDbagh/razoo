@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Scissors, Clock, Award, CheckCircle, Quote, ChevronDown } from 'lucide-react';
+import { Scissors, Award, CheckCircle, Quote, ChevronDown, Hand } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import DirhamIcon from '../components/DirhamIcon';
 
 const FAQ_ITEMS = [
   { q: 'Do you come to my home or do I visit a shop?', a: 'We come to you. EliteGrooming is a mobile barber service—our barbers travel to your home or office at a time that suits you.' },
@@ -73,7 +74,8 @@ function Home() {
             {[
               { icon: Scissors, title: 'Signature Haircut', desc: 'Precision cuts tailored to your style and face shape' },
               { icon: Award, title: 'Beard Grooming', desc: 'Expert trimming, shaping, and conditioning treatments' },
-              { icon: Clock, title: 'Quick Trim', desc: 'Fast touch-ups and maintenance cuts for busy schedules' },
+              { icon: Hand, title: 'Manicure & Pedicure', desc: 'Relaxing treatment for healthy nails, soft hands, and smooth feet' },
+           
             ].map((service, idx) => (
               <div key={idx} className="bg-neutral-900 border border-amber-500/20 rounded-2xl p-8 hover:border-amber-500/50 transition group">
                 <service.icon className="h-12 w-12 text-amber-500 mb-4 group-hover:scale-110 transition" />
@@ -150,9 +152,14 @@ function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Basic Cut', price: '$35', features: ['Haircut & styling', 'Wash included', '30 minutes'] },
-              { name: 'Full Service', price: '$60', features: ['Haircut & styling', 'Beard trim & shape', 'Hot towel treatment', '45 minutes'], popular: true },
-              { name: 'Premium Package', price: '$85', features: ['Haircut & styling', 'Full beard grooming', 'Facial treatment', 'Scalp massage', '60 minutes'] },
+              { name: 'Fade haircut', price: 250, features: ['Haircut & styling', 'Wash included', '45 minutes'] },
+              { name: 'Beard trimming', price: 150, features: [ 'Beard trim & shape',, '30 minutes'], popular: false },
+              { name: 'hair styling', price: 150, features: [ 'hair styling', 'Quick wash'], popular: false },
+              { name: 'Manicure', price: 170, features: [ 'Manicure','nails cleaning & polishing', 'hand massage'], popular: false },
+              { name: 'Pedicure', price: 200, features: [ 'Pedicure','nails cleaning & polishing', 'foot spa & massage'], popular: false },
+              { name: 'Manicure & Pedicure', price: 299, features: [ 'Manicure & Pedicure','nails cleaning & polishing', 'hand massage', 'foot spa & massage'], popular: false },
+              { name: 'hair full service', price: 399, features: [ 'hairCut ', 'Quick wash', 'hair styling','beard trim & shape', '60 minutes'], popular: true },
+              { name: 'Full Service', price: 599, features: [ 'hairCut ', 'Quick wash', 'hair styling','beard trim & shape', 'manicure & pedicure', 'nails cleaning & polishing', 'hand massage', 'foot spa & massage'], popular: true },
             ].map((plan, idx) => (
               <div key={idx} className={`bg-neutral-900 rounded-2xl p-8 ${plan.popular ? 'border-2 border-amber-500 relative' : 'border border-amber-500/20'}`}>
                 {plan.popular && (
@@ -161,7 +168,10 @@ function Home() {
                   </div>
                 )}
                 <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                <div className="text-4xl font-bold text-amber-500 mb-6">{plan.price}</div>
+                <div className="flex items-center justify-center gap-2 text-4xl font-bold text-amber-500 mb-6">
+                  <DirhamIcon className="h-10 w-10 text-amber-500" />
+                  <span>{plan.price}</span>
+                </div>
                 <ul className="space-y-3">
                   {plan.features.map((feature, fidx) => (
                     <li key={fidx} className="flex items-center space-x-2 text-gray-300">
