@@ -126,7 +126,6 @@ export async function getAdminContacts(): Promise<{
 
 export async function bookAppointment(data: {
   name: string;
-  email: string;
   phone?: string;
   hairstyle?: string;
   preferred_date?: string;
@@ -138,7 +137,6 @@ export async function bookAppointment(data: {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: data.name,
-      email: data.email,
       phone: data.phone ?? undefined,
       hairstyle: data.hairstyle ?? undefined,
       preferred_date: data.preferred_date ?? undefined,

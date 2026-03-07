@@ -28,7 +28,6 @@ export default function Book() {
 
   const [form, setForm] = useState({
     name: '',
-    email: '',
     phone: '',
     hairstyle: '',
     preferred_date: '',
@@ -108,7 +107,6 @@ export default function Book() {
     try {
       const res = await bookAppointment({
         name: form.name,
-        email: form.email,
         phone: form.phone || undefined,
         hairstyle: form.hairstyle || undefined,
         preferred_date: form.preferred_date || undefined,
@@ -119,7 +117,6 @@ export default function Book() {
         setStatus('success');
         setForm({
           name: '',
-          email: '',
           phone: '',
           hairstyle: '',
           preferred_date: '',
@@ -142,10 +139,10 @@ export default function Book() {
 
   return (
     <div className="flex flex-1 flex-col">
-      <section className="flex-1 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">Book an Appointment</h1>
-          <p className="text-gray-400 mb-10">
+      <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-xl mx-auto w-full min-w-0">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">Book an Appointment</h1>
+          <p className="text-gray-400 mb-6 sm:mb-10 text-sm sm:text-base">
             {step === 'choose' ? 'Start with a style suggestion or go straight to booking.' : 'Fill in your details and we’ll get back to you to confirm.'}
           </p>
 
@@ -155,9 +152,9 @@ export default function Book() {
               <button
                 type="button"
                 onClick={() => setStep('book')}
-                className="w-full flex items-center justify-between gap-4 rounded-xl border-2 border-amber-500/50 bg-amber-500/10 p-6 text-left hover:border-amber-500 hover:bg-amber-500/20 transition"
+                className="w-full flex items-center justify-between gap-3 sm:gap-4 rounded-xl border-2 border-amber-500/50 bg-amber-500/10 p-4 sm:p-6 text-left hover:border-amber-500 hover:bg-amber-500/20 transition"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                   <div className="rounded-full bg-amber-500/20 p-3">
                     <ChevronRight className="h-6 w-6 text-amber-500" />
                   </div>
@@ -172,8 +169,8 @@ export default function Book() {
                 className="w-full flex items-center justify-between gap-4 rounded-xl border border-amber-500/20 bg-neutral-800/80 p-6 text-left opacity-70 cursor-not-allowed pointer-events-none"
                 aria-disabled="true"
               >
-                <div className="flex items-center gap-4">
-                  <div className="rounded-full bg-neutral-700 p-3">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                    <div className="rounded-full bg-neutral-700 p-3 flex-shrink-0">
                     <Sparkles className="h-6 w-6 text-gray-500" />
                   </div>
                   <div>
@@ -219,7 +216,7 @@ export default function Book() {
               </label>
               <div>
                 <label className="block text-white font-medium mb-2">Current hair length</label>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-row">
                   {HAIR_LENGTH_OPTIONS.map((opt) => (
                     <button
                       key={opt.value}
@@ -240,11 +237,11 @@ export default function Book() {
                   <p className="text-sm text-red-400">{analysisError}</p>
                 </div>
               )}
-              <div className="flex gap-3">
+              <div className="flex flex-col-reverse sm:flex-row gap-3">
                 <button
                   type="button"
                   onClick={() => { setStep('choose'); setPhotoFile(null); setPhotoPreview(null); setAnalysisError(null); }}
-                  className="rounded-lg border border-amber-500/20 px-4 py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
+                  className="rounded-lg border border-amber-500/20 px-4 py-3 sm:py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
                 >
                   Back
                 </button>
@@ -252,7 +249,7 @@ export default function Book() {
                   type="button"
                   onClick={runAnalysis}
                   disabled={!photoFile}
-                  className="flex-1 rounded-lg bg-amber-500 py-2.5 text-sm font-semibold text-black hover:bg-amber-400 disabled:opacity-50 disabled:pointer-events-none"
+                  className="rounded-lg bg-amber-500 py-3 sm:py-2.5 text-sm font-semibold text-black hover:bg-amber-400 disabled:opacity-50 disabled:pointer-events-none sm:flex-1"
                 >
                   Get my style
                 </button>
@@ -302,18 +299,18 @@ export default function Book() {
                   ))}
                 </ul>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   type="button"
                   onClick={() => { setStep('upload'); setPhotoFile(null); setPhotoPreview(null); setAnalysisResult(null); setAnalysisError(null); }}
-                  className="rounded-lg border border-amber-500/20 px-4 py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
+                  className="rounded-lg border border-amber-500/20 px-4 py-3 sm:py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
                 >
                   Try another photo
                 </button>
                 <button
                   type="button"
                   onClick={() => { setStep('book'); setSelectedStyleForBooking(null); }}
-                  className="rounded-lg border border-amber-500/20 px-4 py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
+                  className="rounded-lg border border-amber-500/20 px-4 py-3 sm:py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
                 >
                   Skip to booking
                 </button>
@@ -325,21 +322,21 @@ export default function Book() {
           {step === 'book' && (
             <>
               {selectedStyleForBooking && (
-                <div className="flex items-center gap-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 mb-5">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 mb-5">
                   <CheckCircle className="h-5 w-5 text-amber-500 flex-shrink-0" />
-                  <p className="text-sm text-amber-200">Booking with: <strong>{selectedStyleForBooking}</strong></p>
+                  <p className="text-sm text-amber-200 flex-1 min-w-0">Booking with: <strong>{selectedStyleForBooking}</strong></p>
                   <button
                     type="button"
                     onClick={() => { setForm((f) => ({ ...f, hairstyle: '' })); setSelectedStyleForBooking(null); }}
-                    className="text-xs text-gray-400 hover:text-white ml-auto"
+                    className="text-xs text-gray-400 hover:text-white py-1 -mr-1"
                   >
                     Change
                   </button>
                 </div>
               )}
               <p className="text-amber-500 text-sm mb-2">{selectedStyleForBooking ? 'Step 3 of 3' : 'Booking'}</p>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Full Name *</label>
               <input
                 type="text"
@@ -347,40 +344,28 @@ export default function Book() {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
                 placeholder="John Doe"
               />
             </div>
-            <div>
-              <label className="block text-white font-medium mb-2">Email *</label>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
-                placeholder="john@example.com"
-              />
-            </div>
-            <div>
+            <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Phone</label>
               <input
                 type="tel"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
                 placeholder="(555) 123-4567"
               />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Service / Hairstyle</label>
               <select
                 name="hairstyle"
                 value={form.hairstyle}
                 onChange={handleChange}
-                className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500"
+                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-amber-500"
               >
                 <option value="">Select...</option>
                 <option value="Basic Cut">Basic Cut - $35</option>
@@ -391,19 +376,19 @@ export default function Book() {
                 ))}
               </select>
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Preferred Date</label>
               <input
                 type="date"
                 name="preferred_date"
                 value={form.preferred_date}
                 onChange={handleChange}
-                className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500"
+                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-amber-500"
               />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Preferred Time</label>
-              <div className="space-y-3 rounded-xl border border-amber-500/20 bg-neutral-800/50 p-4">
+              <div className="space-y-3 rounded-xl border border-amber-500/20 bg-neutral-800/50 p-3 sm:p-4">
                 <p className="text-sm text-gray-400">Choose a period and optional time range</p>
                 <div className="flex flex-wrap gap-2">
                   {(['morning', 'afternoon', 'night'] as const).map((slot) => (
@@ -421,38 +406,38 @@ export default function Book() {
                     </button>
                   ))}
                 </div>
-                <div className="grid grid-cols-2 gap-3 pt-2">
-                  <div>
+                <div className="grid grid-cols-2 gap-3 pt-2 min-w-0">
+                  <div className="min-w-0">
                     <label className="mb-1 block text-xs text-gray-500">From</label>
                     <input
                       type="time"
                       name="time_from"
                       value={form.time_from}
                       onChange={handleChange}
-                      className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-3 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                      className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-amber-500"
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label className="mb-1 block text-xs text-gray-500">To</label>
                     <input
                       type="time"
                       name="time_to"
                       value={form.time_to}
                       onChange={handleChange}
-                      className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-3 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                      className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-amber-500"
                     />
                   </div>
                 </div>
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Notes (optional)</label>
               <textarea
                 name="notes"
                 value={form.notes}
                 onChange={handleChange}
                 rows={3}
-                className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 resize-none"
+                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 resize-none"
                 placeholder="Any special requests..."
               />
             </div>
@@ -468,18 +453,18 @@ export default function Book() {
                 <p className="text-red-400">{errorMsg}</p>
               </div>
             )}
-            <div className="flex gap-3">
+            <div className="flex flex-col-reverse sm:flex-row gap-3">
               <button
                 type="button"
                 onClick={() => setStep(analysisResult ? 'results' : 'choose')}
-                className="rounded-lg border border-amber-500/20 px-4 py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800"
+                className="rounded-lg border border-amber-500/20 px-4 py-3 sm:py-2.5 text-sm font-medium text-gray-300 hover:bg-neutral-800 min-h-[44px] sm:min-h-0"
               >
                 Back
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 rounded-lg bg-amber-500 py-3 text-black font-semibold hover:bg-amber-400 disabled:opacity-50"
+                className="flex-1 rounded-lg bg-amber-500 py-3 text-black font-semibold hover:bg-amber-400 disabled:opacity-50 min-h-[48px]"
               >
                 {loading ? 'Submitting…' : 'Book Appointment'}
               </button>
