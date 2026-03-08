@@ -451,55 +451,57 @@ export default function Book() {
                 )}
               </div>
             </div>
-            <div className="min-w-0 input-icon-amber w-full">
-              <label className="block text-white font-medium mb-2">Preferred Date</label>
+            {/* Preferred Date - clean rebuild */}
+            <div className="form-field">
+              <label htmlFor="preferred_date" className="form-label">Preferred Date</label>
               <input
+                id="preferred_date"
                 type="date"
                 name="preferred_date"
                 value={form.preferred_date}
                 onChange={handleChange}
-                className="block w-full min-w-0 max-w-full bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3.5 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border min-h-[48px] touch-manipulation"
+                className="form-input form-input-date"
               />
             </div>
-            <div className="min-w-0 input-icon-amber w-full">
-              <label className="block text-white font-medium mb-2">Preferred Time</label>
-              <div className="space-y-3 rounded-xl border border-[#f59E0B]/20 bg-neutral-800/50 p-3 sm:p-4 w-full min-w-0">
-                <p className="text-sm text-gray-400">Choose a period and optional time range</p>
-                <div className="grid grid-cols-3 gap-2 min-w-0">
+
+            {/* Preferred Time - clean rebuild */}
+            <div className="form-field">
+              <label className="form-label">Preferred Time</label>
+              <div className="form-time-section">
+                <p className="form-time-hint">Choose a period and optional time range</p>
+                <div className="form-time-buttons">
                   {(['morning', 'afternoon', 'night'] as const).map((slot) => (
                     <button
                       key={slot}
                       type="button"
                       onClick={() => setForm((prev) => ({ ...prev, preferred_time_slot: prev.preferred_time_slot === slot ? '' : slot }))}
-                      className={`rounded-lg border px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium capitalize transition min-h-[44px] touch-manipulation min-w-0 truncate ${
-                        form.preferred_time_slot === slot
-                          ? 'border-[#f59E0B] bg-[#f59E0B]/20 text-[#f59E0B]'
-                          : 'border-[#f59E0B]/20 text-gray-400 hover:border-[#f59E0B]/40 hover:text-white'
-                      }`}
+                      className={`form-time-btn ${form.preferred_time_slot === slot ? 'form-time-btn-active' : ''}`}
                     >
                       {slot === 'morning' ? 'Morning' : slot === 'afternoon' ? 'Afternoon' : 'Night'}
                     </button>
                   ))}
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 min-w-0">
-                  <div className="min-w-0 w-full">
-                    <label className="mb-1.5 block text-sm text-gray-500">From</label>
+                <div className="form-time-range">
+                  <div className="form-time-input-wrap">
+                    <label htmlFor="time_from" className="form-time-label">From</label>
                     <input
+                      id="time_from"
                       type="time"
                       name="time_from"
                       value={form.time_from}
                       onChange={handleChange}
-                      className="block w-full min-w-0 max-w-full bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3.5 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border min-h-[48px] touch-manipulation"
+                      className="form-input form-input-time"
                     />
                   </div>
-                  <div className="min-w-0 w-full">
-                    <label className="mb-1.5 block text-sm text-gray-500">To</label>
+                  <div className="form-time-input-wrap">
+                    <label htmlFor="time_to" className="form-time-label">To</label>
                     <input
+                      id="time_to"
                       type="time"
                       name="time_to"
                       value={form.time_to}
                       onChange={handleChange}
-                      className="block w-full min-w-0 max-w-full bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3.5 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border min-h-[48px] touch-manipulation"
+                      className="form-input form-input-time"
                     />
                   </div>
                 </div>

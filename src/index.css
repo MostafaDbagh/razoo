@@ -2,17 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Date and time input - amber icon, prevent overflow on mobile */
-@layer utilities {
-  .input-icon-amber input[type="date"]::-webkit-calendar-picker-indicator,
-  .input-icon-amber input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(58%) sepia(89%) saturate(1234%) hue-rotate(360deg) brightness(96%) contrast(101%);
-    cursor: pointer;
+/* Booking form - Preferred Date & Preferred Time (from zero) */
+.form-field {
+  min-width: 0;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(38 38 38);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  color: white;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #f59e0b;
+}
+
+.form-input-date,
+.form-input-time {
+  accent-color: #f59e0b;
+}
+
+.form-input-date::-webkit-calendar-picker-indicator,
+.form-input-time::-webkit-calendar-picker-indicator {
+  filter: invert(58%) sepia(89%) saturate(1234%) hue-rotate(360deg) brightness(96%) contrast(101%);
+  cursor: pointer;
+}
+
+/* Preferred Time section */
+.form-time-section {
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 0.75rem;
+  background-color: rgba(38 38 38 / 0.5);
+  padding: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .form-time-section {
+    padding: 1rem;
   }
-  .input-icon-amber input[type="date"],
-  .input-icon-amber input[type="time"] {
-    min-width: 0;
-    max-width: 100%;
-    width: 100%;
+}
+
+.form-time-hint {
+  font-size: 0.875rem;
+  color: rgb(156 163 175);
+  margin-bottom: 0.75rem;
+}
+
+.form-time-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-time-btn {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: transparent;
+  color: rgb(156 163 175);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.form-time-btn:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: white;
+}
+
+.form-time-btn-active {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.form-time-range {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .form-time-range {
+    flex-direction: row;
   }
+}
+
+.form-time-input-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-time-label {
+  display: block;
+  font-size: 0.875rem;
+  color: rgb(107 114 128);
+  margin-bottom: 0.375rem;
 }
