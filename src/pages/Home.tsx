@@ -78,7 +78,7 @@ function Home() {
               { icon: Hand, title: 'Manicure & Pedicure', desc: 'Relaxing treatment for healthy nails, soft hands, and smooth feet' },
            
             ].map((service, idx) => (
-              <div key={idx} className="bg-neutral-900 border border-amber-500/20 rounded-2xl p-8 hover:border-amber-500/50 transition group">
+              <div key={idx} className="relative overflow-hidden bg-gradient-to-b from-white/10 to-white/[0.02] backdrop-blur-xl border border-amber-500/30 rounded-2xl p-8 shadow-xl shadow-black/30 shadow-[0_0_20px_rgba(245,158,11,0.08)] ring-1 ring-white/5 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-[0_0_30px_rgba(245,158,11,0.2)] hover:ring-amber-500/20 transition group">
                 <service.icon className="h-12 w-12 text-amber-500 mb-4 group-hover:scale-110 transition" />
                 <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
                 <p className="text-gray-400 leading-relaxed">{service.desc}</p>
@@ -153,9 +153,9 @@ function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {SERVICES.map((plan, idx) => (
-              <div key={idx} className={`flex flex-col min-h-full bg-neutral-900 rounded-2xl p-8 ${plan.popular ? 'border-2 border-amber-500 relative' : 'border border-amber-500/20'}`}>
+              <div key={idx} className={`flex flex-col min-h-full relative overflow-visible bg-gradient-to-b from-white/10 to-white/[0.02] backdrop-blur-xl rounded-2xl p-8 shadow-xl shadow-black/30 shadow-[0_0_25px_rgba(245,158,11,0.12)] ring-1 ring-white/5 hover:shadow-2xl hover:shadow-[0_0_40px_rgba(245,158,11,0.25)] transition ${plan.popular ? 'border-2 border-amber-500 relative' : 'border border-amber-500/30'} ${plan.popular ? 'ring-2 ring-amber-500/30' : 'ring-1 ring-amber-500/10'} hover:ring-amber-500/20`}>
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 bg-amber-500 text-black px-5 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap shadow-lg">
                     Most Popular
                   </div>
                 )}
