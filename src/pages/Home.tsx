@@ -153,7 +153,7 @@ function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {SERVICES.map((plan, idx) => (
-              <div key={idx} className={`bg-neutral-900 rounded-2xl p-8 ${plan.popular ? 'border-2 border-amber-500 relative' : 'border border-amber-500/20'}`}>
+              <div key={idx} className={`flex flex-col min-h-full bg-neutral-900 rounded-2xl p-8 ${plan.popular ? 'border-2 border-amber-500 relative' : 'border border-amber-500/20'}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold">
                     Most Popular
@@ -164,6 +164,7 @@ function Home() {
                   <DirhamIcon className="h-10 w-10 text-amber-500" />
                   <span>{plan.price}</span>
                 </div>
+                <div className="flex-1 min-h-0" />
                 <ul className="space-y-3">
                   {plan.features.map((feature, fidx) => (
                     <li key={fidx} className="flex items-center space-x-2 text-gray-300">
@@ -174,7 +175,7 @@ function Home() {
                 </ul>
                 <Link
                   to={`/book?service=${encodeURIComponent(plan.name)}`}
-                  className={`block w-full mt-8 py-3 rounded-lg font-semibold transition text-center ${plan.popular ? 'bg-amber-500 hover:bg-amber-600 text-black' : 'border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black'}`}
+                  className={`block w-full mt-8 py-3 rounded-lg font-semibold transition text-center shrink-0 ${plan.popular ? 'bg-amber-500 hover:bg-amber-600 text-black' : 'border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black'}`}
                 >
                   Choose Plan
                 </Link>
