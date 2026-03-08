@@ -70,6 +70,16 @@
   flex-shrink: 0;
 }
 
+@media (min-width: 768px) {
+  .form-input-icon {
+    display: none;
+  }
+
+  .form-input-with-icon .form-input {
+    padding-right: 1rem;
+  }
+}
+
 .form-input-placeholder {
   position: absolute;
   left: 1rem;
