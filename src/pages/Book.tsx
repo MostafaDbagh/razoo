@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera, ChevronDown } from 'lucide-react';
+import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera, ChevronDown, Calendar, Clock } from 'lucide-react';
 import { bookAppointment, getMyStyle, type AnalyzeResponse, type HairLength } from '../lib/api';
 import { SERVICES } from '../data/services';
 import DirhamIcon from '../components/DirhamIcon';
@@ -451,20 +451,25 @@ export default function Book() {
                 )}
               </div>
             </div>
-            {/* Preferred Date - clean rebuild */}
+            {/* Preferred Date */}
             <div className="form-field">
               <label htmlFor="preferred_date" className="form-label">Preferred Date</label>
-              <input
-                id="preferred_date"
-                type="date"
-                name="preferred_date"
-                value={form.preferred_date}
-                onChange={handleChange}
-                className="form-input form-input-date"
-              />
+              <div className="form-input-with-icon">
+                <Calendar className="form-input-icon" aria-hidden />
+                <input
+                  id="preferred_date"
+                  type="date"
+                  name="preferred_date"
+                  value={form.preferred_date}
+                  onChange={handleChange}
+                  className="form-input form-input-date"
+                  aria-label="Select preferred date"
+                />
+                {!form.preferred_date && <span className="form-input-placeholder">Tap to select</span>}
+              </div>
             </div>
 
-            {/* Preferred Time - clean rebuild */}
+            {/* Preferred Time */}
             <div className="form-field">
               <label className="form-label">Preferred Time</label>
               <div className="form-time-section">
@@ -484,25 +489,35 @@ export default function Book() {
                 <div className="form-time-range">
                   <div className="form-time-input-wrap">
                     <label htmlFor="time_from" className="form-time-label">From</label>
-                    <input
-                      id="time_from"
-                      type="time"
-                      name="time_from"
-                      value={form.time_from}
-                      onChange={handleChange}
-                      className="form-input form-input-time"
-                    />
+                    <div className="form-input-with-icon">
+                      <Clock className="form-input-icon" aria-hidden />
+                      <input
+                        id="time_from"
+                        type="time"
+                        name="time_from"
+                        value={form.time_from}
+                        onChange={handleChange}
+                        className="form-input form-input-time"
+                        aria-label="Time from"
+                      />
+                      {!form.time_from && <span className="form-input-placeholder">--:--</span>}
+                    </div>
                   </div>
                   <div className="form-time-input-wrap">
                     <label htmlFor="time_to" className="form-time-label">To</label>
-                    <input
-                      id="time_to"
-                      type="time"
-                      name="time_to"
-                      value={form.time_to}
-                      onChange={handleChange}
-                      className="form-input form-input-time"
-                    />
+                    <div className="form-input-with-icon">
+                      <Clock className="form-input-icon" aria-hidden />
+                      <input
+                        id="time_to"
+                        type="time"
+                        name="time_to"
+                        value={form.time_to}
+                        onChange={handleChange}
+                        className="form-input form-input-time"
+                        aria-label="Time to"
+                      />
+                      {!form.time_to && <span className="form-input-placeholder">--:--</span>}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -43,6 +43,40 @@
 .form-input-time::-webkit-calendar-picker-indicator {
   filter: invert(58%) sepia(89%) saturate(1234%) hue-rotate(360deg) brightness(96%) contrast(101%);
   cursor: pointer;
+  opacity: 0.8;
+}
+
+/* Input with icon + placeholder hint */
+.form-input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.form-input-with-icon .form-input {
+  padding-left: 2.75rem;
+  padding-right: 2.5rem;
+}
+
+.form-input-icon {
+  position: absolute;
+  left: 1rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #f59e0b;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.form-input-placeholder {
+  position: absolute;
+  left: 2.75rem;
+  color: rgb(107 114 128);
+  font-size: 1rem;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Preferred Time section */
