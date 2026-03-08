@@ -56,13 +56,13 @@
 }
 
 .form-input-with-icon .form-input {
-  padding-left: 2.75rem;
-  padding-right: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 2.75rem;
 }
 
 .form-input-icon {
   position: absolute;
-  left: 1rem;
+  right: 1rem;
   width: 1.25rem;
   height: 1.25rem;
   color: #f59e0b;
@@ -72,7 +72,7 @@
 
 .form-input-placeholder {
   position: absolute;
-  left: 2.75rem;
+  left: 1rem;
   color: rgb(107 114 128);
   font-size: 1rem;
   pointer-events: none;
