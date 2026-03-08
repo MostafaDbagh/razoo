@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Date and time input icon color - calendar & clock icons to #f59E0B */
+/* Prevent date/time inputs from overflowing on mobile */
+@layer utilities {
+  .input-icon-amber input[type="date"]::-webkit-calendar-picker-indicator,
+  .input-icon-amber input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(58%) sepia(89%) saturate(1234%) hue-rotate(360deg) brightness(96%) contrast(101%);
+    cursor: pointer;
+  }
+  .input-icon-amber input[type="date"],
+  .input-icon-amber input[type="time"] {
+    min-width: 0;
+    max-width: 100%;
+  }
+}

@@ -75,7 +75,7 @@ export default function AdminContact() {
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <p className="font-medium text-white">{c.name}</p>
-                  <p className="text-sm text-gray-500">{c.email}</p>
+                  <p className="text-sm text-gray-500">{c.phone || c.email || '—'}</p>
                   {c.subject && (
                     <p className="mt-1 text-sm font-medium text-amber-500/90">{c.subject}</p>
                   )}

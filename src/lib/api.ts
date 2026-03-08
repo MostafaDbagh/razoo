@@ -107,7 +107,8 @@ export async function deleteOrder(id: string): Promise<{ success: boolean; error
 export interface AdminContact {
   id: number;
   name: string;
-  email: string;
+  phone: string;
+  email?: string; // legacy, prefer phone
   subject?: string;
   message: string;
   created_at: string;
@@ -151,7 +152,7 @@ export async function bookAppointment(data: {
 
 export async function submitContact(data: {
   name: string;
-  email: string;
+  phone: string;
   subject?: string;
   message: string;
 }): Promise<{ success: boolean; error?: string }> {

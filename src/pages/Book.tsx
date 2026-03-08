@@ -1,6 +1,9 @@
-import { useState, useRef } from 'react';
-import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera, ChevronDown } from 'lucide-react';
 import { bookAppointment, getMyStyle, type AnalyzeResponse, type HairLength } from '../lib/api';
+import { SERVICES } from '../data/services';
+import DirhamIcon from '../components/DirhamIcon';
 
 type Step = 'choose' | 'upload' | 'analyzing' | 'results' | 'book';
 
@@ -17,6 +20,9 @@ function formatFaceShape(shape: string): string {
 }
 
 export default function Book() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const serviceFromUrl = searchParams.get('service');
+
   const [step, setStep] = useState<Step>('choose');
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -24,7 +30,19 @@ export default function Book() {
   const [analysisError, setAnalysisError] = useState<string | null>(null);
   const [analysisResult, setAnalysisResult] = useState<AnalyzeResponse | null>(null);
   const [selectedStyleForBooking, setSelectedStyleForBooking] = useState<string | null>(null);
+  const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const serviceDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (serviceDropdownRef.current && !serviceDropdownRef.current.contains(e.target as Node)) {
+        setServiceDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const [form, setForm] = useState({
     name: '',
@@ -39,6 +57,18 @@ export default function Book() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    if (serviceFromUrl) {
+      const matching = SERVICES.find((s) => s.name === serviceFromUrl);
+      if (matching) {
+        setForm((prev) => ({ ...prev, hairstyle: matching.name }));
+        setSelectedStyleForBooking(matching.name);
+        setStep('book');
+        setSearchParams({}, { replace: true });
+      }
+    }
+  }, [serviceFromUrl, setSearchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -140,7 +170,7 @@ export default function Book() {
   return (
     <div className="flex flex-1 flex-col">
       <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-xl mx-auto w-full min-w-0">
+        <div className="w-[92%] sm:w-full max-w-xl mx-auto min-w-0 overflow-hidden">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">Book an Appointment</h1>
           <p className="text-gray-400 mb-6 sm:mb-10 text-sm sm:text-base">
             {step === 'choose' ? 'Start with a style suggestion or go straight to booking.' : 'Fill in your details and we’ll get back to you to confirm.'}
@@ -335,7 +365,7 @@ export default function Book() {
                 </div>
               )}
               <p className="text-amber-500 text-sm mb-2">{selectedStyleForBooking ? 'Step 3 of 3' : 'Booking'}</p>
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 overflow-hidden">
             <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Full Name *</label>
               <input
@@ -359,36 +389,81 @@ export default function Book() {
                 placeholder="(555) 123-4567"
               />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0" ref={serviceDropdownRef}>
               <label className="block text-white font-medium mb-2">Service / Hairstyle</label>
-              <select
-                name="hairstyle"
-                value={form.hairstyle}
-                onChange={handleChange}
-                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-amber-500"
-              >
-                <option value="">Select...</option>
-                <option value="Basic Cut">Basic Cut - $35</option>
-                <option value="Full Service">Full Service - $60</option>
-                <option value="Premium Package">Premium Package - $85</option>
-                {(analysisResult?.suggestions || []).filter((s) => !['Basic Cut', 'Full Service', 'Premium Package'].includes(s)).map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
+                  className="w-full flex items-center justify-between gap-2 min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-amber-500 text-left"
+                >
+                  {form.hairstyle ? (
+                    <>
+                      <span className="truncate">{form.hairstyle}</span>
+                      {(() => {
+                        const service = SERVICES.find((s) => s.name === form.hairstyle);
+                        return service ? (
+                          <span className="flex items-center gap-1 text-amber-500 flex-shrink-0">
+                            <DirhamIcon className="h-5 w-5" />
+                            {service.price}
+                          </span>
+                        ) : null;
+                      })()}
+                    </>
+                  ) : (
+                    <span className="text-gray-500">Select...</span>
+                  )}
+                  <ChevronDown className={`h-5 w-5 text-gray-400 flex-shrink-0 transition-transform ${serviceDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {serviceDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-1 z-10 bg-neutral-800 border border-amber-500/20 rounded-lg shadow-xl overflow-hidden max-h-60 overflow-y-auto">
+                    {SERVICES.map((s) => (
+                      <button
+                        key={s.name}
+                        type="button"
+                        onClick={() => {
+                          setForm((prev) => ({ ...prev, hairstyle: s.name }));
+                          setServiceDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between gap-2 px-4 py-3 text-left text-white hover:bg-amber-500/10 border-b border-amber-500/10 last:border-0"
+                      >
+                        <span>{s.name}</span>
+                        <span className="flex items-center gap-1.5 text-amber-500 flex-shrink-0">
+                          <DirhamIcon className="h-5 w-5" />
+                          {s.price}
+                        </span>
+                      </button>
+                    ))}
+                    {(analysisResult?.suggestions || []).filter((s) => !SERVICES.some((sv) => sv.name === s)).map((s) => (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => {
+                          setForm((prev) => ({ ...prev, hairstyle: s }));
+                          setServiceDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between gap-2 px-4 py-3 text-left text-white hover:bg-amber-500/10 border-b border-amber-500/10 last:border-0"
+                      >
+                        <span>{s}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 input-icon-amber overflow-hidden">
               <label className="block text-white font-medium mb-2">Preferred Date</label>
               <input
                 type="date"
                 name="preferred_date"
                 value={form.preferred_date}
                 onChange={handleChange}
-                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-amber-500"
+                className="w-full max-w-full min-w-0 bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border"
               />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 input-icon-amber overflow-hidden">
               <label className="block text-white font-medium mb-2">Preferred Time</label>
-              <div className="space-y-3 rounded-xl border border-amber-500/20 bg-neutral-800/50 p-3 sm:p-4">
+              <div className="space-y-3 rounded-xl border border-[#f59E0B]/20 bg-neutral-800/50 p-3 sm:p-4 overflow-hidden">
                 <p className="text-sm text-gray-400">Choose a period and optional time range</p>
                 <div className="flex flex-wrap gap-2">
                   {(['morning', 'afternoon', 'night'] as const).map((slot) => (
@@ -398,33 +473,33 @@ export default function Book() {
                       onClick={() => setForm((prev) => ({ ...prev, preferred_time_slot: prev.preferred_time_slot === slot ? '' : slot }))}
                       className={`rounded-lg border px-4 py-2.5 text-sm font-medium capitalize transition ${
                         form.preferred_time_slot === slot
-                          ? 'border-amber-500 bg-amber-500/20 text-amber-500'
-                          : 'border-amber-500/20 text-gray-400 hover:border-amber-500/40 hover:text-white'
+                          ? 'border-[#f59E0B] bg-[#f59E0B]/20 text-[#f59E0B]'
+                          : 'border-[#f59E0B]/20 text-gray-400 hover:border-[#f59E0B]/40 hover:text-white'
                       }`}
                     >
                       {slot === 'morning' ? 'Morning' : slot === 'afternoon' ? 'Afternoon' : 'Night'}
                     </button>
                   ))}
                 </div>
-                <div className="grid grid-cols-2 gap-3 pt-2 min-w-0">
-                  <div className="min-w-0">
+                <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3 pt-2 min-w-0 overflow-hidden">
+                  <div className="min-w-0 overflow-hidden">
                     <label className="mb-1 block text-xs text-gray-500">From</label>
                     <input
                       type="time"
                       name="time_from"
                       value={form.time_from}
                       onChange={handleChange}
-                      className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-amber-500"
+                      className="w-full max-w-full min-w-0 bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border"
                     />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 overflow-hidden">
                     <label className="mb-1 block text-xs text-gray-500">To</label>
                     <input
                       type="time"
                       name="time_to"
                       value={form.time_to}
                       onChange={handleChange}
-                      className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-amber-500"
+                      className="w-full max-w-full min-w-0 bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border"
                     />
                   </div>
                 </div>

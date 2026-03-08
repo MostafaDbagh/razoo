@@ -6,7 +6,7 @@ import { submitContact } from '../lib/api';
 export default function Contact() {
   const [form, setForm] = useState({
     name: '',
-    email: '',
+    phone: '',
     subject: '',
     message: '',
   });
@@ -27,13 +27,13 @@ export default function Contact() {
     try {
       const res = await submitContact({
         name: form.name,
-        email: form.email,
+        phone: form.phone,
         subject: form.subject || undefined,
         message: form.message,
       });
       if (res.success) {
         setStatus('success');
-        setForm({ name: '', email: '', subject: '', message: '' });
+        setForm({ name: '', phone: '', subject: '', message: '' });
       } else {
         setStatus('error');
         setErrorMsg(res.error ?? 'Failed to send message');
@@ -94,15 +94,15 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-medium mb-2">Email *</label>
+                  <label className="block text-white font-medium mb-2">Phone *</label>
                   <input
-                    type="email"
-                    name="email"
-                    value={form.email}
+                    type="tel"
+                    name="phone"
+                    value={form.phone}
                     onChange={handleChange}
                     required
                     className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
-                    placeholder="john@example.com"
+                    placeholder="(555) 123-4567"
                   />
                 </div>
                 <div>

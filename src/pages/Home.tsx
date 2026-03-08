@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Scissors, Award, CheckCircle, Quote, ChevronDown, Hand } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import DirhamIcon from '../components/DirhamIcon';
+import { SERVICES } from '../data/services';
 
 const FAQ_ITEMS = [
   { q: 'Do you come to my home or do I visit a shop?', a: 'We come to you. EliteGrooming is a mobile barber service—our barbers travel to your home or office at a time that suits you.' },
@@ -51,7 +52,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative hidden md:block">
               <div className="aspect-square bg-gradient-to-br from-amber-500/20 to-transparent rounded-3xl p-8">
                 <img
                   src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -151,16 +152,7 @@ function Home() {
             <p className="text-xl text-gray-400">Transparent rates, no hidden fees</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: 'Fade haircut', price: 250, features: ['Haircut & styling', 'Wash included', '45 minutes'] },
-              { name: 'Beard trimming', price: 150, features: [ 'Beard trim & shape',, '30 minutes'], popular: false },
-              { name: 'hair styling', price: 150, features: [ 'hair styling', 'Quick wash'], popular: false },
-              { name: 'Manicure', price: 170, features: [ 'Manicure','nails cleaning & polishing', 'hand massage'], popular: false },
-              { name: 'Pedicure', price: 200, features: [ 'Pedicure','nails cleaning & polishing', 'foot spa & massage'], popular: false },
-              { name: 'Manicure & Pedicure', price: 299, features: [ 'Manicure & Pedicure','nails cleaning & polishing', 'hand massage', 'foot spa & massage'], popular: false },
-              { name: 'hair full service', price: 399, features: [ 'hairCut ', 'Quick wash', 'hair styling','beard trim & shape', '60 minutes'], popular: true },
-              { name: 'Full Service', price: 599, features: [ 'hairCut ', 'Quick wash', 'hair styling','beard trim & shape', 'manicure & pedicure', 'nails cleaning & polishing', 'hand massage', 'foot spa & massage'], popular: true },
-            ].map((plan, idx) => (
+            {SERVICES.map((plan, idx) => (
               <div key={idx} className={`bg-neutral-900 rounded-2xl p-8 ${plan.popular ? 'border-2 border-amber-500 relative' : 'border border-amber-500/20'}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold">
@@ -180,9 +172,12 @@ function Home() {
                     </li>
                   ))}
                 </ul>
-                <button className={`w-full mt-8 py-3 rounded-lg font-semibold transition ${plan.popular ? 'bg-amber-500 hover:bg-amber-600 text-black' : 'border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black'}`}>
+                <Link
+                  to={`/book?service=${encodeURIComponent(plan.name)}`}
+                  className={`block w-full mt-8 py-3 rounded-lg font-semibold transition text-center ${plan.popular ? 'bg-amber-500 hover:bg-amber-600 text-black' : 'border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black'}`}
+                >
                   Choose Plan
-                </button>
+                </Link>
               </div>
             ))}
           </div>
