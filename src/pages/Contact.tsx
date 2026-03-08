@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 import { submitContact } from '../lib/api';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -48,6 +49,11 @@ export default function Contact() {
 
   return (
     <>
+      <SEO
+        title="Contact | Elite Barbers Dubai"
+        description="Contact EliteGrooming Dubai. Questions about our AI-powered mobile barber service, pricing, or VIP grooming? Get in touch."
+        canonical="https://razoo.vercel.app/contact"
+      />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">

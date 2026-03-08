@@ -4,6 +4,7 @@ import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera, ChevronDown, 
 import { bookAppointment, getMyStyle, type AnalyzeResponse, type HairLength } from '../lib/api';
 import { SERVICES } from '../data/services';
 import DirhamIcon from '../components/DirhamIcon';
+import SEO from '../components/SEO';
 
 type Step = 'choose' | 'upload' | 'analyzing' | 'results' | 'book';
 
@@ -169,6 +170,12 @@ export default function Book() {
 
   return (
     <div className="flex flex-1 flex-col">
+      <SEO
+        title="Book Appointment | AI Haircut Dubai"
+        description="Book your elite barber appointment in Dubai. AI face analysis suggests the perfect haircut—upload a photo or book directly. Luxury grooming at your doorstep."
+        canonical="https://razoo.vercel.app/book"
+        keywords="book barber Dubai, AI haircut appointment Dubai, mobile barber booking, EliteGrooming book, premium barber booking Dubai"
+      />
       <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="w-[92%] sm:w-full max-w-xl mx-auto min-w-0">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">Book an Appointment</h1>

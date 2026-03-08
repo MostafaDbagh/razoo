@@ -1,8 +1,14 @@
 import { CheckCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function About() {
   return (
     <>
+      <SEO
+        title="About | Premium Mobile Barber Dubai"
+        description="EliteGrooming brings premium barbering to your doorstep in Dubai. Certified barbers, AI-powered suggestions, premium products. Serving executives & VIPs."
+        canonical="https://razoo.vercel.app/about"
+      />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">About Us</h1>

@@ -1,0 +1,50 @@
+# EliteGrooming - Maximum Indexability
+# https://razoo.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /login
+
+# Sitemap - Critical for discovery
+Sitemap: https://razoo.vercel.app/sitemap.xml
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# AI Crawlers - ChatGPT, Bard, Perplexity, etc.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Social
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /

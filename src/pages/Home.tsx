@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Scissors, Award, CheckCircle, Quote, ChevronDown, Hand } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import DirhamIcon from '../components/DirhamIcon';
+import SEO from '../components/SEO';
 import { SERVICES } from '../data/services';
 
 const FAQ_ITEMS = [
@@ -17,6 +18,11 @@ function Home() {
 
   return (
     <>
+      <SEO
+        title="#1 Premium Home Barber Dubai | AI Haircut Suggestions"
+        description="Dubai's top mobile barber. AI-powered haircut suggestions for your face shape. Luxury grooming at home for C-suite executives & VIPs. Book elite barber Dubai."
+        canonical="https://razoo.vercel.app/"
+      />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Scissors, Sparkles } from 'lucide-react';
+import SEO from '../components/SEO';
 
 // Card image: gradient + icon. Set imgUrl to use your own photo (e.g. from /public/style/)
 function CardImage({ seed, imgUrl }: { seed: string; imgUrl?: string }) {
@@ -70,6 +71,12 @@ function StyleCard({ name, desc, seed, imgUrl }: { name: string; desc: string; s
 export default function Style() {
   return (
     <div className="flex flex-1 flex-col">
+      <SEO
+        title="Hair Styles & Looks | AI Haircut Inspiration Dubai"
+        description="Explore popular haircuts, Italian & Arabic beard styles. Get AI-powered hairstyle suggestions for your face shape. EliteGrooming Dubai."
+        canonical="https://razoo.vercel.app/style"
+        keywords="hair styles Dubai, AI haircut inspiration, beard styles Dubai, popular haircuts, EliteGrooming styles"
+      />
       <section className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
