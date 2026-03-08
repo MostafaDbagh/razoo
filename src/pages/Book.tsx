@@ -170,7 +170,7 @@ export default function Book() {
   return (
     <div className="flex flex-1 flex-col">
       <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="w-[92%] sm:w-full max-w-xl mx-auto min-w-0 overflow-hidden">
+        <div className="w-[92%] sm:w-full max-w-xl mx-auto min-w-0">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">Book an Appointment</h1>
           <p className="text-gray-400 mb-6 sm:mb-10 text-sm sm:text-base">
             {step === 'choose' ? 'Start with a style suggestion or go straight to booking.' : 'Fill in your details and we’ll get back to you to confirm.'}
@@ -365,7 +365,7 @@ export default function Book() {
                 </div>
               )}
               <p className="text-amber-500 text-sm mb-2">{selectedStyleForBooking ? 'Step 3 of 3' : 'Booking'}</p>
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 overflow-hidden">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Full Name *</label>
               <input
@@ -451,27 +451,27 @@ export default function Book() {
                 )}
               </div>
             </div>
-            <div className="min-w-0 input-icon-amber overflow-hidden">
+            <div className="min-w-0 input-icon-amber w-full">
               <label className="block text-white font-medium mb-2">Preferred Date</label>
               <input
                 type="date"
                 name="preferred_date"
                 value={form.preferred_date}
                 onChange={handleChange}
-                className="w-full max-w-full min-w-0 bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border"
+                className="block w-full min-w-0 max-w-full bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3.5 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border min-h-[48px] touch-manipulation"
               />
             </div>
-            <div className="min-w-0 input-icon-amber overflow-hidden">
+            <div className="min-w-0 input-icon-amber w-full">
               <label className="block text-white font-medium mb-2">Preferred Time</label>
-              <div className="space-y-3 rounded-xl border border-[#f59E0B]/20 bg-neutral-800/50 p-3 sm:p-4 overflow-hidden">
+              <div className="space-y-3 rounded-xl border border-[#f59E0B]/20 bg-neutral-800/50 p-3 sm:p-4 w-full min-w-0">
                 <p className="text-sm text-gray-400">Choose a period and optional time range</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-3 gap-2 min-w-0">
                   {(['morning', 'afternoon', 'night'] as const).map((slot) => (
                     <button
                       key={slot}
                       type="button"
                       onClick={() => setForm((prev) => ({ ...prev, preferred_time_slot: prev.preferred_time_slot === slot ? '' : slot }))}
-                      className={`rounded-lg border px-4 py-2.5 text-sm font-medium capitalize transition ${
+                      className={`rounded-lg border px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium capitalize transition min-h-[44px] touch-manipulation min-w-0 truncate ${
                         form.preferred_time_slot === slot
                           ? 'border-[#f59E0B] bg-[#f59E0B]/20 text-[#f59E0B]'
                           : 'border-[#f59E0B]/20 text-gray-400 hover:border-[#f59E0B]/40 hover:text-white'
@@ -481,25 +481,25 @@ export default function Book() {
                     </button>
                   ))}
                 </div>
-                <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3 pt-2 min-w-0 overflow-hidden">
-                  <div className="min-w-0 overflow-hidden">
-                    <label className="mb-1 block text-xs text-gray-500">From</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 min-w-0">
+                  <div className="min-w-0 w-full">
+                    <label className="mb-1.5 block text-sm text-gray-500">From</label>
                     <input
                       type="time"
                       name="time_from"
                       value={form.time_from}
                       onChange={handleChange}
-                      className="w-full max-w-full min-w-0 bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border"
+                      className="block w-full min-w-0 max-w-full bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3.5 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border min-h-[48px] touch-manipulation"
                     />
                   </div>
-                  <div className="min-w-0 overflow-hidden">
-                    <label className="mb-1 block text-xs text-gray-500">To</label>
+                  <div className="min-w-0 w-full">
+                    <label className="mb-1.5 block text-sm text-gray-500">To</label>
                     <input
                       type="time"
                       name="time_to"
                       value={form.time_to}
                       onChange={handleChange}
-                      className="w-full max-w-full min-w-0 bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-3 py-2.5 sm:py-3 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border"
+                      className="block w-full min-w-0 max-w-full bg-neutral-800 border border-[#f59E0B]/20 rounded-lg px-4 py-3.5 text-base text-white focus:outline-none focus:border-[#f59E0B] accent-[#f59E0B] box-border min-h-[48px] touch-manipulation"
                     />
                   </div>
                 </div>
@@ -538,8 +538,8 @@ export default function Book() {
               </button>
               <button
                 type="submit"
-                disabled={loading}
-                className="flex-1 rounded-lg bg-amber-500 py-3 text-black font-semibold hover:bg-amber-400 disabled:opacity-50 min-h-[48px]"
+                disabled={loading || !form.name.trim()}
+                className="flex-1 rounded-lg bg-amber-500 py-3 text-black font-semibold hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px]"
               >
                 {loading ? 'Submitting…' : 'Book Appointment'}
               </button>

@@ -144,8 +144,8 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 text-black font-semibold py-4 rounded-lg transition text-lg"
+                  disabled={loading || !form.name.trim() || !form.phone.trim() || !form.message.trim()}
+                  className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 disabled:opacity-60 disabled:cursor-not-allowed text-black font-semibold py-4 rounded-lg transition text-lg"
                 >
                   {loading ? 'Sending…' : 'Send Message'}
                 </button>
