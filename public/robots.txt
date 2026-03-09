@@ -1,5 +1,5 @@
 # EliteGrooming - Maximum Indexability
-# https://razoo.vercel.app
+# https://www.barber2door.com
 
 User-agent: *
 Allow: /
@@ -7,7 +7,7 @@ Disallow: /admin
 Disallow: /login
 
 # Sitemap - Critical for discovery
-Sitemap: https://razoo.vercel.app/sitemap.xml
+Sitemap: https://www.barber2door.com/sitemap.xml
 
 # Google
 User-agent: Googlebot

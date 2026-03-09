@@ -74,7 +74,7 @@ export default function Style() {
       <SEO
         title="Hair Styles & Looks | AI Haircut Inspiration Dubai"
         description="Explore popular haircuts, Italian & Arabic beard styles. Get AI-powered hairstyle suggestions for your face shape. EliteGrooming Dubai."
-        canonical="https://razoo.vercel.app/style"
+        canonical="https://www.barber2door.com/style"
         keywords="hair styles Dubai, AI haircut inspiration, beard styles Dubai, popular haircuts, EliteGrooming styles"
       />
       <section className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">

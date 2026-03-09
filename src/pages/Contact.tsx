@@ -52,7 +52,7 @@ export default function Contact() {
       <SEO
         title="Contact | Elite Barbers Dubai"
         description="Contact EliteGrooming Dubai. Questions about our AI-powered mobile barber service, pricing, or VIP grooming? Get in touch."
-        canonical="https://razoo.vercel.app/contact"
+        canonical="https://www.barber2door.com/contact"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">

@@ -7,7 +7,7 @@ export default function About() {
       <SEO
         title="About | Premium Mobile Barber Dubai"
         description="EliteGrooming brings premium barbering to your doorstep in Dubai. Certified barbers, AI-powered suggestions, premium products. Serving executives & VIPs."
-        canonical="https://razoo.vercel.app/about"
+        canonical="https://www.barber2door.com/about"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">

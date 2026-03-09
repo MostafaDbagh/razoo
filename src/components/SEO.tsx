@@ -10,7 +10,7 @@ interface SEOProps {
 
 const DEFAULT_TITLE = 'EliteGrooming | #1 AI-Powered Premium Home Barber Dubai | VIP Grooming';
 const DEFAULT_DESC = "Dubai's top mobile barber. AI-powered haircut suggestions for your face shape. Luxury grooming at home for executives & VIPs. Book elite barber Dubai.";
-const DEFAULT_OG = 'https://razoo.vercel.app/og-image.png';
+const DEFAULT_OG = 'https://www.barber2door.com/og-image.png';
 
 export default function SEO({ title, description, keywords, canonical, ogImage }: SEOProps) {
   useEffect(() => {

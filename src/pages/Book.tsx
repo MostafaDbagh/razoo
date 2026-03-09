@@ -173,7 +173,7 @@ export default function Book() {
       <SEO
         title="Book Appointment | AI Haircut Dubai"
         description="Book your elite barber appointment in Dubai. AI face analysis suggests the perfect haircut—upload a photo or book directly. Luxury grooming at your doorstep."
-        canonical="https://razoo.vercel.app/book"
+        canonical="https://www.barber2door.com/book"
         keywords="book barber Dubai, AI haircut appointment Dubai, mobile barber booking, EliteGrooming book, premium barber booking Dubai"
       />
       <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">

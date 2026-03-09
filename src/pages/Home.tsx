@@ -21,7 +21,7 @@ function Home() {
       <SEO
         title="#1 Premium Home Barber Dubai | AI Haircut Suggestions"
         description="Dubai's top mobile barber. AI-powered haircut suggestions for your face shape. Luxury grooming at home for C-suite executives & VIPs. Book elite barber Dubai."
-        canonical="https://razoo.vercel.app/"
+        canonical="https://www.barber2door.com/"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
