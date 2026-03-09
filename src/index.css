@@ -39,6 +39,14 @@
   accent-color: #f59e0b;
 }
 
+/* Hide native date placeholder when empty so only our "dd/mm/yyyy" shows */
+.form-input-date-empty.form-input-with-icon .form-input-date::-webkit-datetime-edit {
+  color: transparent;
+}
+.form-input-date-empty.form-input-with-icon .form-input-date::-moz-placeholder {
+  color: transparent;
+}
+
 .form-input-date::-webkit-calendar-picker-indicator,
 .form-input-time::-webkit-calendar-picker-indicator {
   filter: invert(58%) sepia(89%) saturate(1234%) hue-rotate(360deg) brightness(96%) contrast(101%);

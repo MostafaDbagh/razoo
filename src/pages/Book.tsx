@@ -73,6 +73,7 @@ export default function Book() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    if (errorMsg) setErrorMsg('');
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -132,14 +133,22 @@ export default function Book() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.phone.trim()) {
+      setErrorMsg('Phone number is required.');
+      return;
+    }
+    if (!form.hairstyle.trim()) {
+      setErrorMsg('Please select a service / hairstyle.');
+      return;
+    }
     setLoading(true);
     setStatus('idle');
     setErrorMsg('');
     try {
       const res = await bookAppointment({
         name: form.name,
-        phone: form.phone || undefined,
-        hairstyle: form.hairstyle || undefined,
+        phone: form.phone.trim(),
+        hairstyle: form.hairstyle.trim(),
         preferred_date: form.preferred_date || undefined,
         preferred_time: preferredTimeString || undefined,
         notes: form.notes || undefined,
@@ -386,18 +395,19 @@ export default function Book() {
               />
             </div>
             <div className="min-w-0">
-              <label className="block text-white font-medium mb-2">Phone</label>
+              <label className="block text-white font-medium mb-2">Phone *</label>
               <input
                 type="tel"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
+                required
                 className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
                 placeholder="(555) 123-4567"
               />
             </div>
             <div className="min-w-0" ref={serviceDropdownRef}>
-              <label className="block text-white font-medium mb-2">Service / Hairstyle</label>
+              <label className="block text-white font-medium mb-2">Service / Hairstyle *</label>
               <div className="relative">
                 <button
                   type="button"
@@ -429,6 +439,7 @@ export default function Book() {
                         key={s.name}
                         type="button"
                         onClick={() => {
+                          setErrorMsg('');
                           setForm((prev) => ({ ...prev, hairstyle: s.name }));
                           setServiceDropdownOpen(false);
                         }}
@@ -446,6 +457,7 @@ export default function Book() {
                         key={s}
                         type="button"
                         onClick={() => {
+                          setErrorMsg('');
                           setForm((prev) => ({ ...prev, hairstyle: s }));
                           setServiceDropdownOpen(false);
                         }}
@@ -461,7 +473,7 @@ export default function Book() {
             {/* Preferred Date */}
             <div className="form-field">
               <label htmlFor="preferred_date" className="form-label">Preferred Date</label>
-              <div className="form-input-with-icon">
+              <div className={`form-input-with-icon ${!form.preferred_date ? 'form-input-date-empty' : ''}`}>
                 <Calendar className="form-input-icon" aria-hidden />
                 <input
                   id="preferred_date"
@@ -470,9 +482,9 @@ export default function Book() {
                   value={form.preferred_date}
                   onChange={handleChange}
                   className="form-input form-input-date"
-                  aria-label="Select preferred date"
+                  aria-label="Select preferred date (dd/mm/yyyy)"
                 />
-                {!form.preferred_date && <span className="form-input-placeholder">Tap to select</span>}
+                {!form.preferred_date && <span className="form-input-placeholder">dd/mm/yyyy</span>}
               </div>
             </div>
 
@@ -562,7 +574,7 @@ export default function Book() {
               </button>
               <button
                 type="submit"
-                disabled={loading || !form.name.trim()}
+                disabled={loading || !form.name.trim() || !form.phone.trim() || !form.hairstyle.trim()}
                 className="flex-1 rounded-lg bg-amber-500 py-3 text-black font-semibold hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px]"
               >
                 {loading ? 'Submitting…' : 'Book Appointment'}
