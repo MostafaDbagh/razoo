@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Scissors, Award, CheckCircle, Quote, ChevronDown, Hand } from 'lucide-react';
+import { Scissors, Award, Sparkles, CheckCircle, Quote, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import DirhamIcon from '../components/DirhamIcon';
 import SEO from '../components/SEO';
 import { SERVICES } from '../data/services';
 
 const FAQ_ITEMS = [
-  { q: 'Do you come to my home or do I visit a shop?', a: 'We come to you. EliteGrooming is a mobile barber service—our barbers travel to your home or office at a time that suits you.' },
+  { q: 'Do you come to my home or do I visit a shop?', a: 'We come to you. Barber2Door is a mobile barber service—our barbers travel to your home or office at a time that suits you.' },
   { q: 'What areas do you cover?', a: 'We serve the greater metro area. Enter your location when booking and we’ll confirm availability. Contact us if you’re outside our usual zone.' },
   { q: 'How do I book and pay?', a: 'Book online through this site. We’ll confirm your appointment and discuss payment options. We accept card and cash; payment is typically taken at the end of your service.' },
   { q: 'Can I cancel or reschedule?', a: 'Yes. Please let us know at least 24 hours in advance so we can adjust our schedule. Last-minute changes may be subject to our cancellation policy.' },
@@ -81,8 +81,7 @@ function Home() {
             {[
               { icon: Scissors, title: 'Signature Haircut', desc: 'Precision cuts tailored to your style and face shape' },
               { icon: Award, title: 'Beard Grooming', desc: 'Expert trimming, shaping, and conditioning treatments' },
-              { icon: Hand, title: 'Manicure & Pedicure', desc: 'Relaxing treatment for healthy nails, soft hands, and smooth feet' },
-           
+              { icon: Sparkles, title: 'Manicure & Pedicure', desc: 'Relaxing treatment for healthy nails, soft hands, and smooth feet' },
             ].map((service, idx) => (
               <div key={idx} className="relative overflow-hidden bg-gradient-to-b from-white/10 to-white/[0.02] backdrop-blur-xl border border-amber-500/30 rounded-2xl p-8 shadow-xl shadow-black/30 shadow-[0_0_20px_rgba(245,158,11,0.08)] ring-1 ring-white/5 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-[0_0_30px_rgba(245,158,11,0.2)] hover:ring-amber-500/20 transition group">
                 <service.icon className="h-12 w-12 text-amber-500 mb-4 group-hover:scale-110 transition" />
@@ -135,7 +134,7 @@ function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { quote: 'Best decision ever. The barber came on time, was super professional, and my cut was exactly what I wanted. No more waiting at the salon.', name: 'James M.', role: 'Regular client' },
-              { quote: 'EliteGrooming has changed how I think about haircuts. Same quality as a high-end barbershop, but at my place. Worth every penny.', name: 'David K.', role: 'Home service customer' },
+              { quote: 'Barber2Door has changed how I think about haircuts. Same quality as a high-end barbershop, but at my place. Worth every penny.', name: 'David K.', role: 'Home service customer' },
               { quote: 'I was skeptical at first, but the whole experience was smooth. Great communication, clean tools, and a cut I get compliments on. Highly recommend.', name: 'Alex R.', role: 'First-time client' },
             ].map((t, idx) => (
               <div key={idx} className="bg-neutral-900 border border-amber-500/20 rounded-2xl p-8 hover:border-amber-500/40 transition">
@@ -243,14 +242,14 @@ function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2">
               <Scissors className="h-8 w-8 text-amber-500" />
-              <span className="text-2xl font-bold text-white">EliteGrooming</span>
+              <span className="text-2xl font-bold text-white">Barber2Door</span>
             </div>
             <div className="flex gap-6 text-sm text-gray-400">
               <Link to="/privacy" className="hover:text-amber-500">Privacy</Link>
               <Link to="/terms" className="hover:text-amber-500">Terms</Link>
             </div>
           </div>
-          <p className="text-center text-gray-500 text-sm mt-4">© {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.</p>
+          <p className="text-center text-gray-500 text-sm mt-4">© {new Date().getFullYear()} Barber2Door. Professional Home Barber Services.</p>
         </div>
       </footer>
     </>

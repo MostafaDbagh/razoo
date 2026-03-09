@@ -1,4 +1,4 @@
-# EliteGrooming - Maximum Indexability
+# Barber2Door - Maximum Indexability
 # https://www.barber2door.com
 
 User-agent: *

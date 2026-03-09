@@ -51,7 +51,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact | Elite Barbers Dubai"
-        description="Contact EliteGrooming Dubai. Questions about our AI-powered mobile barber service, pricing, or VIP grooming? Get in touch."
+        description="Contact Barber2Door Dubai. Questions about our AI-powered mobile barber service, pricing, or VIP grooming? Get in touch."
         canonical="https://www.barber2door.com/contact"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -65,21 +65,21 @@ export default function Contact() {
             <div className="bg-neutral-800 rounded-2xl p-8 border border-amber-500/20">
               <Phone className="h-8 w-8 text-amber-500 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Call Us</h3>
-              <a href="tel:+1234567890" className="text-gray-400 hover:text-amber-500 transition">
-                (123) 456-7890
+              <a href="tel:+971586057772" className="text-gray-400 hover:text-amber-500 transition">
+                +971 586057772
               </a>
             </div>
             <div className="bg-neutral-800 rounded-2xl p-8 border border-amber-500/20">
               <Mail className="h-8 w-8 text-amber-500 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Email Us</h3>
-              <a href="mailto:info@elitegrooming.com" className="text-gray-400 hover:text-amber-500 transition">
-                info@elitegrooming.com
+              <a href="mailto:info@Barber2Door.com" className="text-gray-400 hover:text-amber-500 transition">
+                info@Barber2Door.com
               </a>
             </div>
             <div className="bg-neutral-800 rounded-2xl p-8 border border-amber-500/20">
               <MapPin className="h-8 w-8 text-amber-500 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Service Area</h3>
-              <p className="text-gray-400">Metro Area – same-day appointments available</p>
+              <p className="text-gray-400">Dubai Emirate – same-day appointments available</p>
             </div>
           </div>
 
@@ -185,14 +185,14 @@ export default function Contact() {
 
       <footer className="bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="text-xl font-bold text-white">EliteGrooming</span>
+          <span className="text-xl font-bold text-white">Barber2Door</span>
           <div className="flex gap-6 text-sm text-gray-400">
             <Link to="/privacy" className="hover:text-amber-500">Privacy</Link>
             <Link to="/terms" className="hover:text-amber-500">Terms</Link>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-4 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.
+          © {new Date().getFullYear()} Barber2Door. Professional Home Barber Services.
         </div>
       </footer>
     </>

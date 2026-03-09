@@ -36,7 +36,7 @@ export default function Terms() {
       </section>
       <footer className="bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.
+          © {new Date().getFullYear()} Barber2Door. Professional Home Barber Services.
         </div>
       </footer>
     </>

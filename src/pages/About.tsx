@@ -6,7 +6,7 @@ export default function About() {
     <>
       <SEO
         title="About | Premium Mobile Barber Dubai"
-        description="EliteGrooming brings premium barbering to your doorstep in Dubai. Certified barbers, AI-powered suggestions, premium products. Serving executives & VIPs."
+        description="Barber2Door brings premium barbering to your doorstep in Dubai. Certified barbers, AI-powered suggestions, premium products. Serving executives & VIPs."
         canonical="https://www.barber2door.com/about"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@ export default function About() {
       </section>
       <footer className="bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.
+          © {new Date().getFullYear()} Barber2Door. Professional Home Barber Services.
         </div>
       </footer>
     </>

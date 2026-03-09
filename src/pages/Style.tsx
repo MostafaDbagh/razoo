@@ -73,9 +73,9 @@ export default function Style() {
     <div className="flex flex-1 flex-col">
       <SEO
         title="Hair Styles & Looks | AI Haircut Inspiration Dubai"
-        description="Explore popular haircuts, Italian & Arabic beard styles. Get AI-powered hairstyle suggestions for your face shape. EliteGrooming Dubai."
+        description="Explore popular haircuts, Italian & Arabic beard styles. Get AI-powered hairstyle suggestions for your face shape. Barber2Door Dubai."
         canonical="https://www.barber2door.com/style"
-        keywords="hair styles Dubai, AI haircut inspiration, beard styles Dubai, popular haircuts, EliteGrooming styles"
+        keywords="hair styles Dubai, AI haircut inspiration, beard styles Dubai, popular haircuts, Barber2Door styles"
       />
       <section className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -171,7 +171,7 @@ export default function Style() {
       </section>
       <footer className="mt-auto bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.
+          © {new Date().getFullYear()} Barber2Door. Professional Home Barber Services.
         </div>
       </footer>
     </div>

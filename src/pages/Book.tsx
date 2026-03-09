@@ -174,7 +174,7 @@ export default function Book() {
         title="Book Appointment | AI Haircut Dubai"
         description="Book your elite barber appointment in Dubai. AI face analysis suggests the perfect haircut—upload a photo or book directly. Luxury grooming at your doorstep."
         canonical="https://www.barber2door.com/book"
-        keywords="book barber Dubai, AI haircut appointment Dubai, mobile barber booking, EliteGrooming book, premium barber booking Dubai"
+        keywords="book barber Dubai, AI haircut appointment Dubai, mobile barber booking, Barber2Door book, premium barber booking Dubai"
       />
       <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="w-[92%] sm:w-full max-w-xl mx-auto min-w-0">
@@ -575,7 +575,7 @@ export default function Book() {
       </section>
       <footer className="mt-auto bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} EliteGrooming. Professional Home Barber Services.
+          © {new Date().getFullYear()} Barber2Door. Professional Home Barber Services.
         </div>
       </footer>
     </div>

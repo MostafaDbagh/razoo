@@ -8,13 +8,13 @@ interface SEOProps {
   ogImage?: string;
 }
 
-const DEFAULT_TITLE = 'EliteGrooming | #1 AI-Powered Premium Home Barber Dubai | VIP Grooming';
+const DEFAULT_TITLE = 'Barber2Door | #1 AI-Powered Premium Home Barber Dubai | VIP Grooming';
 const DEFAULT_DESC = "Dubai's top mobile barber. AI-powered haircut suggestions for your face shape. Luxury grooming at home for executives & VIPs. Book elite barber Dubai.";
 const DEFAULT_OG = 'https://www.barber2door.com/og-image.png';
 
 export default function SEO({ title, description, keywords, canonical, ogImage }: SEOProps) {
   useEffect(() => {
-    document.title = title ? `${title} | EliteGrooming Dubai` : DEFAULT_TITLE;
+    document.title = title ? `${title} | Barber2Door Dubai` : DEFAULT_TITLE;
     return () => {
       document.title = DEFAULT_TITLE;
     };
