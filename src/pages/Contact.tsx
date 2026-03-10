@@ -191,7 +191,7 @@ export default function Contact() {
 
       <footer className="bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="text-xl font-bold text-white">Barber2Door</span>
+          <img src="/logo.png" alt="Barber2Door" className="w-[190px] h-10 object-cover" />
           <div className="flex gap-6 text-sm text-gray-400">
             <Link to="/privacy" className="hover:text-amber-500">Privacy</Link>
             <Link to="/terms" className="hover:text-amber-500">Terms</Link>

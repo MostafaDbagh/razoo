@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Scissors, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { getAdminToken } from '../lib/auth';
 
@@ -18,11 +18,10 @@ function Navigation() {
 
   return (
     <nav className="fixed w-full bg-black z-50 border-b border-amber-600/20 md:bg-black/95 md:backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition">
-            <Scissors className="h-8 w-8 text-amber-500" />
-            <span className="text-2xl font-bold text-white">Barber2Door</span>
+          <Link to="/" className="flex items-center h-16 w-[190px] overflow-hidden hover:opacity-90 transition">
+            <img src="/logo.png" alt="Barber2Door VIP Home Service" className="w-full h-full object-cover" />
           </Link>
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map(({ to, label }) => (

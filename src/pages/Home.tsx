@@ -240,9 +240,8 @@ function Home() {
       <footer className="bg-black border-t border-amber-600/20 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center space-x-2">
-              <Scissors className="h-8 w-8 text-amber-500" />
-              <span className="text-2xl font-bold text-white">Barber2Door</span>
+            <div className="flex items-center">
+              <img src="/logo.png" alt="Barber2Door" className="w-[190px] h-12 object-cover" />
             </div>
             <div className="flex gap-6 text-sm text-gray-400">
               <Link to="/privacy" className="hover:text-amber-500">Privacy</Link>
