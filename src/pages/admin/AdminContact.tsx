@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getAdminContacts, type AdminContact } from '../../lib/api';
+import { Trash2 } from 'lucide-react';
+import { getAdminContacts, deleteContact as deleteContactApi, type AdminContact } from '../../lib/api';
 
 function formatDate(d: string | undefined): string {
   if (!d) return '—';
@@ -20,6 +21,7 @@ export default function AdminContact() {
   const [contacts, setContacts] = useState<AdminContact[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -33,6 +35,19 @@ export default function AdminContact() {
   useEffect(() => {
     load();
   }, []);
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Delete this contact submission?')) return;
+    setDeletingId(id);
+    setError(null);
+    const res = await deleteContactApi(id);
+    if (res.success) {
+      setContacts((prev) => prev.filter((c) => c.id !== id));
+    } else {
+      setError(res.error ?? 'Delete failed');
+    }
+    setDeletingId(null);
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -80,7 +95,19 @@ export default function AdminContact() {
                     <p className="mt-1 text-sm font-medium text-amber-500/90">{c.subject}</p>
                   )}
                 </div>
-                <p className="text-xs text-gray-500 whitespace-nowrap">{formatDate(c.created_at)}</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-xs text-gray-500 whitespace-nowrap">{formatDate(c.created_at)}</p>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(c.id)}
+                    disabled={deletingId === c.id}
+                    className="rounded-lg p-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                    title="Delete"
+                    aria-label="Delete contact"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
               <p className="mt-3 text-sm text-gray-300 whitespace-pre-wrap">{c.message}</p>
             </div>

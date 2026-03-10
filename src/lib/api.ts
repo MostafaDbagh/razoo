@@ -125,6 +125,16 @@ export async function getAdminContacts(): Promise<{
   return { success: true, data: json.data ?? [] };
 }
 
+export async function deleteContact(id: string): Promise<{ success: boolean; error?: string }> {
+  const res = await fetch(`${API_URL}/api/admin/contacts/${id}`, {
+    method: 'DELETE',
+    headers: getAuthHeaders(),
+  });
+  const json = await res.json();
+  if (!res.ok) return { success: false, error: json.message || json.error || 'Delete failed' };
+  return { success: true };
+}
+
 export async function bookAppointment(data: {
   name: string;
   phone?: string;
