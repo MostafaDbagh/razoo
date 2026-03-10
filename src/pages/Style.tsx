@@ -73,9 +73,9 @@ export default function Style() {
     <div className="flex flex-1 flex-col">
       <SEO
         title="Hair Styles & Looks | AI Haircut Inspiration Dubai"
-        description="Explore popular haircuts, Italian & Arabic beard styles. Get AI-powered hairstyle suggestions for your face shape. Barber2Door Dubai."
+        description="Explore popular haircuts, Italian & Arabic beard styles. Get OpenAI-powered AI hairstyle suggestions for your face shape. Barber2Door Dubai."
         canonical="https://www.barber2door.com/style"
-        keywords="hair styles Dubai, AI haircut inspiration, beard styles Dubai, popular haircuts, Barber2Door styles"
+        keywords="OpenAI haircut Dubai, hair styles Dubai, AI haircut inspiration, beard styles Dubai, popular haircuts, Barber2Door styles"
       />
       <section className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">

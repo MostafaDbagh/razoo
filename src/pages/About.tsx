@@ -6,7 +6,7 @@ export default function About() {
     <>
       <SEO
         title="About | Premium Mobile Barber Dubai"
-        description="Barber2Door brings premium barbering to your doorstep in Dubai. Certified barbers, AI-powered suggestions, premium products. Serving executives & VIPs."
+        description="Barber2Door brings premium barbering to your doorstep in Dubai. Certified barbers, OpenAI-powered AI suggestions, premium products. Serving executives & VIPs."
         canonical="https://www.barber2door.com/about"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">

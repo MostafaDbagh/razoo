@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, CheckCircle, AlertCircle, User } from 'lucide-react';
 import { submitContact } from '../lib/api';
 import SEO from '../components/SEO';
 
@@ -51,7 +51,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact | Elite Barbers Dubai"
-        description="Contact Barber2Door Dubai. Questions about our AI-powered mobile barber service, pricing, or VIP grooming? Get in touch."
+        description="Contact Barber2Door Dubai. Questions about our OpenAI-powered AI mobile barber service, pricing, or VIP grooming? Get in touch."
         canonical="https://www.barber2door.com/contact"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -89,27 +89,33 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-white font-medium mb-2">Full Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
-                    placeholder="John Doe"
-                  />
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-500/60 pointer-events-none" />
+                    <input
+                      type="text"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-neutral-800/80 border border-amber-500/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-gray-500 transition-colors duration-200 hover:border-amber-500/40 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+                      placeholder="Enter your name"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="block text-white font-medium mb-2">Phone *</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
-                    placeholder="(555) 123-4567"
-                  />
+                  <div className="relative">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-500/60 pointer-events-none" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-neutral-800/80 border border-amber-500/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-gray-500 transition-colors duration-200 hover:border-amber-500/40 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+                      placeholder="+971 50 123 4567"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="block text-white font-medium mb-2">Subject</label>

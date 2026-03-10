@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera, ChevronDown, Calendar, Clock } from 'lucide-react';
+import { CheckCircle, AlertCircle, Sparkles, ChevronRight, Camera, ChevronDown, Calendar, Clock, User, Phone } from 'lucide-react';
 import { bookAppointment, getMyStyle, type AnalyzeResponse, type HairLength } from '../lib/api';
 import { SERVICES } from '../data/services';
 import DirhamIcon from '../components/DirhamIcon';
@@ -181,9 +181,9 @@ export default function Book() {
     <div className="flex flex-1 flex-col">
       <SEO
         title="Book Appointment | AI Haircut Dubai"
-        description="Book your elite barber appointment in Dubai. AI face analysis suggests the perfect haircut—upload a photo or book directly. Luxury grooming at your doorstep."
+        description="Book your elite barber appointment in Dubai. OpenAI-powered AI face analysis suggests the perfect haircut—upload a photo or book directly. Luxury grooming at your doorstep."
         canonical="https://www.barber2door.com/book"
-        keywords="book barber Dubai, AI haircut appointment Dubai, mobile barber booking, Barber2Door book, premium barber booking Dubai"
+        keywords="OpenAI haircut Dubai, book barber Dubai, AI haircut appointment Dubai, mobile barber booking, Barber2Door book, premium barber booking Dubai"
       />
       <section className="flex-1 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="w-[92%] sm:w-full max-w-xl mx-auto min-w-0">
@@ -384,27 +384,33 @@ export default function Book() {
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Full Name *</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
-                placeholder="John Doe"
-              />
+              <div className="relative">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-500/60 pointer-events-none" />
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full min-w-0 bg-neutral-800/80 border border-amber-500/25 rounded-xl pl-12 pr-4 py-3.5 text-base text-white placeholder-gray-500 transition-colors duration-200 hover:border-amber-500/40 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+                  placeholder="Enter your name"
+                />
+              </div>
             </div>
             <div className="min-w-0">
               <label className="block text-white font-medium mb-2">Phone *</label>
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                required
-                className="w-full min-w-0 bg-neutral-800 border border-amber-500/20 rounded-lg px-4 py-3 text-base text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
-                placeholder="(555) 123-4567"
-              />
+              <div className="relative">
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-500/60 pointer-events-none" />
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full min-w-0 bg-neutral-800/80 border border-amber-500/25 rounded-xl pl-12 pr-4 py-3.5 text-base text-white placeholder-gray-500 transition-colors duration-200 hover:border-amber-500/40 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
+                  placeholder="+971 50 123 4567"
+                />
+              </div>
             </div>
             <div className="min-w-0" ref={serviceDropdownRef}>
               <label className="block text-white font-medium mb-2">Service / Hairstyle *</label>
