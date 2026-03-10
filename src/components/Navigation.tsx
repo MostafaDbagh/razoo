@@ -47,9 +47,11 @@ function Navigation() {
             </Link>
           </div>
           <div className="flex md:hidden items-center gap-2">
-            <Link to="/book" className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-4 py-2 rounded-lg transition text-sm">
-              Book Now
-            </Link>
+            {location.pathname !== '/' && (
+              <Link to="/book" className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-4 py-2 rounded-lg transition text-sm">
+                Book Now
+              </Link>
+            )}
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
