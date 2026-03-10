@@ -5,7 +5,7 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About | Premium Mobile Barber Dubai"
+        title="About | Premium Barber Dubai"
         description="Barber2Door brings premium barbering to your doorstep in Dubai. Certified barbers, OpenAI-powered AI suggestions, premium products. Serving executives & VIPs."
         canonical="https://www.barber2door.com/about"
       />

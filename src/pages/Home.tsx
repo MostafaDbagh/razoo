@@ -6,11 +6,12 @@ import SEO from '../components/SEO';
 import { SERVICES } from '../data/services';
 
 const FAQ_ITEMS = [
-  { q: 'Do you come to my home or do I visit a shop?', a: 'We come to you. Barber2Door is a mobile barber service—our barbers travel to your home or office at a time that suits you.' },
-  { q: 'What areas do you cover?', a: 'We serve the greater metro area. Enter your location when booking and we’ll confirm availability. Contact us if you’re outside our usual zone.' },
-  { q: 'How do I book and pay?', a: 'Book online through this site. We’ll confirm your appointment and discuss payment options. We accept card and cash; payment is typically taken at the end of your service.' },
-  { q: 'Can I cancel or reschedule?', a: 'Yes. Please let us know at least 24 hours in advance so we can adjust our schedule. Last-minute changes may be subject to our cancellation policy.' },
-  { q: 'What should I have ready for the appointment?', a: 'A well-lit area, a chair, and access to a sink for a quick wash if needed. Our barber will bring tools and products.' },
+  { q: 'How does your barber service work?', a: 'Book an appointment through our website, and our barber will come directly to your home for a haircut or grooming service.' },
+  { q: 'How can I book an appointment?', a: 'Choose your service and preferred time on our website. We will contact you to get your location and confirm your appointment.' },
+  { q: 'Can I cancel or reschedule?', a: 'Yes, you can cancel or reschedule your appointment up to 24 hours before.' },
+  { q: 'What areas do you serve?', a: 'We currently serve all areas in Dubai. We are coming soon to Abu Dhabi and other emirates.' },
+  { q: 'How does booking and payment work?', a: "Book your appointment online in a few simple steps. Payment is accepted by card or cash upon the barber's arrival." },
+  { q: 'Do I need to prepare anything before the barber arrives?', a: 'No special preparation is needed. Our barber brings all professional tools. Just make sure there is a small space with good lighting.' },
 ];
 
 function Home() {
@@ -20,7 +21,7 @@ function Home() {
     <>
       <SEO
         title="#1 Premium Home Barber Dubai | AI Haircut Suggestions"
-        description="Dubai's top mobile barber. OpenAI-powered AI haircut suggestions for your face shape. Luxury grooming at home for C-suite executives & VIPs. Book elite barber Dubai."
+        description="Dubai's top premium barber. OpenAI-powered AI haircut suggestions for your face shape. Luxury grooming at home for C-suite executives & VIPs. Book elite barber Dubai."
         canonical="https://www.barber2door.com/"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">

@@ -5,7 +5,7 @@ import { getAdminToken } from '../lib/auth';
 
 function Navigation() {
   const location = useLocation();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const isAdmin = !!getAdminToken();
 
   const navLinks = [
@@ -54,23 +54,23 @@ function Navigation() {
             )}
             <button
               type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => setMenuOpen(!menuOpen)}
               className="p-2 text-gray-300 hover:text-amber-500 transition"
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
-      {mobileOpen && (
+      {menuOpen && (
         <div className="md:hidden absolute top-20 left-0 right-0 bg-black border-b border-amber-600/20 py-4 px-4">
           <div className="flex flex-col space-y-1">
             {navLinks.map(({ to, label }) => (
               <Link
                 key={to}
                 to={to}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMenuOpen(false)}
                 className={`block py-3 px-4 rounded-lg transition ${location.pathname === to ? 'text-amber-500 bg-amber-500/10' : 'text-gray-300 hover:text-amber-500 hover:bg-amber-500/5'}`}
               >
                 {label}
@@ -79,7 +79,7 @@ function Navigation() {
             {isAdmin ? (
               <Link
                 to="/admin/appointments"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMenuOpen(false)}
                 className="block py-3 px-4 rounded-lg text-amber-500 hover:bg-amber-500/5 transition font-medium"
               >
                 Dashboard
@@ -87,7 +87,7 @@ function Navigation() {
             ) : (
               <Link
                 to="/login"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMenuOpen(false)}
                 className="block py-3 px-4 rounded-lg text-gray-400 hover:text-amber-500 hover:bg-amber-500/5 transition"
               >
                 Admin

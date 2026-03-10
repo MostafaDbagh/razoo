@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const DEFAULT_TITLE = 'Barber2Door | #1 AI-Powered Premium Home Barber Dubai | VIP Grooming';
-const DEFAULT_DESC = "Dubai's top mobile barber. OpenAI-powered AI haircut suggestions for your face shape. Luxury grooming at home for executives & VIPs. Book elite barber Dubai.";
+const DEFAULT_DESC = "Dubai's top premium barber. OpenAI-powered AI haircut suggestions for your face shape. Luxury grooming at home for executives & VIPs. Book elite barber Dubai.";
 const DEFAULT_OG = 'https://www.barber2door.com/og-image.png';
 
 export default function SEO({ title, description, keywords, canonical, ogImage, ogTitle, ogDescription }: SEOProps) {

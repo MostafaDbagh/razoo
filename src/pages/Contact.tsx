@@ -51,7 +51,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact | Elite Barbers Dubai"
-        description="Contact Barber2Door Dubai. Questions about our OpenAI-powered AI mobile barber service, pricing, or VIP grooming? Get in touch."
+        description="Contact Barber2Door Dubai. Questions about our OpenAI-powered AI barber service, pricing, or VIP grooming? Get in touch."
         canonical="https://www.barber2door.com/contact"
       />
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
