@@ -66,7 +66,7 @@ export default function Contact() {
               <Phone className="h-8 w-8 text-amber-500 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Call Us</h3>
               <a href="tel:+971586057772" className="text-gray-400 hover:text-amber-500 transition">
-                +971 586057772
+                +971 -----
               </a>
             </div>
             <div className="bg-neutral-800 rounded-2xl p-8 border border-amber-500/20">
